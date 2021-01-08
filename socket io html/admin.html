@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notification</title>
+</head>
+<body>
+    <h1>This is Notification page</h1>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js"></script>
+ 
+<script>
+    var socket = io("http://192.168.43.103:3000");
+ 
+    socket.on("messageSent", function (message) {
+        console.log(message);
+        $.notify("New Message\n" + message.message + "\n\nFrom: " + message.name, {
+            autoHide: false,
+            className: "success"
+        });
+    });
+</script>
+</body>
+</html>

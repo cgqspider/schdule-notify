@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+</head>
+<body>
+    <h1>This is contact page</h1>
+
+    <form action="#">
+        <input type="text" id="name">
+        <input type="text" id="email">
+        <input type="text" id="subject">
+        <textarea id="message"></textarea>
+     
+        <input type="button" onclick="sendMessage()" value="Send Message">
+    </form>
+</body>
+<script>
+var socket = io("https://sock11.herokuapp.com/");
+ 
+ function sendMessage() {
+     socket.emit("messageSent", {
+         "name": document.getElementById("name").value,
+         "email": document.getElementById("email").value,
+         "subject": document.getElementById("subject").value,
+         "message": document.getElementById("message").value
+     });
+  
+     // Call an AJAX for further actions you want to perform (like saving in database etc.)
+ }
+ 
+</script>
+</html>
